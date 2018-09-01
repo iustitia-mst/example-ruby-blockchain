@@ -1,0 +1,24 @@
+version: "3"
+services:
+  web:
+    image: ruby-env-2.5.1:latest 
+    environment:
+      AWS_REGION: ap-northeast-1
+    volumes:
+      - "./:/root/example-ruby-blockchain/"
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:3000"
+      - "5432:5432"
+      - "5439:5439"
+                                     
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: mysql
+    volumes:
+      - "./mysql57-data:/var/lib/mysql57/data"
