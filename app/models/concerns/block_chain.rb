@@ -5,7 +5,10 @@ require_relative '../block'
 class BlockChain
 
   def initialize
-    BlockChain.get_genesis_block().save if Block.count == 0
+    if Block.count == 0
+      gb = ProofOfWork.do_proof_of_work BlockChain.get_genesis_block
+      gb.save 
+    end
   end
 
   def get_latest_block
@@ -16,14 +19,14 @@ class BlockChain
     previous_block = get_latest_block
     next_index = previous_block.index + 1
     next_timestamp = Time.now.to_i
-    b = Block.new(
+    nb = Block.new(
       index: next_index,
       previous_hash: previous_block.hash_value,
       generated_at: next_timestamp,
-      data_value: data
+      data_value: data,
+      nonce: 0,
     )
-    b.calculate_hash
-    b
+    ProofOfWork.do_proof_of_work nb
   end
 
   def is_valid_new_block? new_block, previous_block

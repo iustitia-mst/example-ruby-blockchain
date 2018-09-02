@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_043048) do
+ActiveRecord::Schema.define(version: 2018_09_01_085233) do
 
   create_table "blocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "index"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_09_01_043048) do
     t.text "data_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "nonce"
   end
 
 end

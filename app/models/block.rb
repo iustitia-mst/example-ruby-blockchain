@@ -21,7 +21,8 @@ class Block < ApplicationRecord
         index: self.index,
         previous_hash: self.previous_hash,
         generated_at: self.generated_at,
-        data_value: self.data_value
+        data_value: self.data_value,
+        nonce: self.nonce
       }.to_json)
     end
 
@@ -31,7 +32,8 @@ class Block < ApplicationRecord
           index: 0,
           previous_hash: '0',
           generated_at: 10000,
-          data_value: "genesis block!!"
+          data_value: "genesis block!!",
+          nonce: 0
         )
       end
     end
